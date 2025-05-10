@@ -23,6 +23,13 @@ bel:
   nrange: 40
   code: 'u'
 
+training:
+  num_epochs: 100
+  batch_size: 32
+  learning_rate: 0.001
+  num_paths: 1000
+  filename: 'dataset_targets'
+
 results:
   good_path_sample_path: '/kinova/src/kinova-ros/MPNet/path_samples_bel/good_path_samples/'
   bad_path_sample_path: '/kinova/src/kinova-ros/MPNet/path_samples_bel/bad_path_samples/'

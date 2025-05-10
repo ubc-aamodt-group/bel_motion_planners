@@ -7,7 +7,6 @@ import pickle
 
 from utils.import_tools import StateValidity
 
-
 joint_offset=torch.tensor([6.8284173, 0, 0, 5.3820982, 5.85142517, 6.25683784]).cuda()
 joint_ranges = torch.tensor([13.34888649, 5.46199751, 5.95070934, 10.77949142, 11.74411774, 12.57576084]).cuda()
 DEFAULT_STEP = 0.05

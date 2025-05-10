@@ -110,7 +110,6 @@ class InferenceTool(object):
         di=pickle.load(open("./bel"+configs['bel']["code"]+"_"+str(numbits)+"_tensor.pkl","rb"))
         di=torch.transpose(di,0,1).cuda()
 
-        # experiment_name = args.model_path.split('models/')[1] + "test_"
         experiment_name = model_path.split('models/')[1] + configs['results']['experiment_name']
         good_paths_path = configs['results']['good_path_sample_path'] + '/' + experiment_name
         bad_paths_path = configs['results']['bad_path_sample_path'] + '/' + experiment_name
@@ -377,7 +376,7 @@ class InferenceTool(object):
     
 
 if __name__ == '__main__':
-    with open('../../../utils/inference.yaml') as file:
+    with open('./utils/inference.yaml') as file:
         try:
             inference_config = yaml.safe_load(file)
         except yaml.YAMLError as exc:

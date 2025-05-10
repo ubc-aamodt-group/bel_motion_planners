@@ -81,9 +81,6 @@ def setColor(name, r, g, b, a):
     color.color.a = a
     _colors[name] = color
 
-## @brief Actually send the colors to MoveIt!
-
-
 def sendColors(scene):
     # Need to send a planning scene diff
     p = PlanningScene()
@@ -96,8 +93,6 @@ def sendColors(scene):
 
 
 def color_norm(col):
-    """ takes in a list of colours in 0-255 """
-
     norm_col = [x/255.0 for x in col]
     return norm_col
 
@@ -169,32 +164,15 @@ def set_environment(bot, scene):
 
     # dimensions of the table
     scene.add_box("table_center", p1, (.5, 1.1, 0.4))
-    # rospy.sleep(.2)
-    # scene.add_box("table_side_left", p1_l, (.5, 1.5, 0.4))
-    # rospy.sleep(.2)
     scene.add_box("table_side_right", p1_r, (.5, 1.5, 0.4))
-    # rospy.sleep(.2)
-    # scene.add_mesh("shelf", p2, "./smallshelf.stl", size = (.1, .025, .025))  # closed back shelf
-
-    # scene.add_mesh("shelf", p2, "./bookshelf_light.stl", size = (.022, .01, .01)) #commented out 1/3/19 because switching to just tabletop
-    # rospy.sleep(.5)
-    # NOTE: need to uncomment below (temporarily commented it out)
-    # scene.add_plane("wall", pw, normal=(0-0.6, 1, 0)) 
-
-    part_size = (0.07, 0.05, 0.12)
-    # scene.add_box("part", p_ob1, size=part_size) #commented out 1/3/19 to just use our own randomly generated boxes
-    # scene.add_mesh("duck", p_ob2, "./duck.stl", size = (.001, .001, .001))
-
     rospy.sleep(1)
 
     print(scene.get_known_object_names())
 
-    ## ---> SET COLOURS
 
     table_color = color_norm([188, 158, 130])
     shelf_color = color_norm([139, 69, 19])
     duck_color = color_norm([255, 255, 0])
-    # print(table_color)
     setColor('table_center', table_color[0], table_color[1], table_color[2], 1)
     setColor('table_side_left',
              table_color[0], table_color[1], table_color[2], 1)
@@ -202,7 +180,6 @@ def set_environment(bot, scene):
              table_color[0], table_color[1], table_color[2], 1)
     setColor('shelf', shelf_color[0], shelf_color[1], shelf_color[2], 1)
     setColor('duck', duck_color[0], duck_color[1], duck_color[2], 1)
-    # rospy.sleep(4)
     sendColors(scene)
 
 
@@ -264,7 +241,6 @@ class ShelfSceneModifier():
     def permute_obstacles(self):
         pose_dict = {}
         for name in self.obstacles.keys():
-            # name = obstacle['name']
             pose_dict[name] = self.get_permutation()
 
         return pose_dict
@@ -303,7 +279,6 @@ class PlanningSceneModifier():
                 print(self._obstacles[name]['mesh_file'])
                 filename="/kinova/data/"+self._obstacles[name]['mesh_file'][2:]
                 print(filename)
-                # filename="/home/jzhao42/Desktop/panda_data_gen/panda/src/panda_mpnet/"+self._obstacles[name]['mesh_file'][2:]
                 self._scene.add_mesh(name, pose, filename=filename, size=self._obstacles[name]['dim'])
             else:
                 
@@ -324,55 +299,6 @@ class PlanningSceneModifier():
             
 
     def delete_obstacles(self):
-        #scene.remove_world_object("table_center")
         for name in self._obstacles.keys():
             self._scene.remove_world_object(name)
         self._scene.remove_world_object("kinect")
-
-class GazeboSceneModifier():
-    def __init__(self, obstacles, port=1):
-        # super(ShelfSceneModifier, self).__init__(files)
-        self._root_path = '$HOME/.gazebo/models/'
-        self._obstacle_files = {}
-        self._obstacles = obstacles
-
-        self.port = port
-
-        self.import_filenames(obstacles)
-
-    def import_filenames(self, obstacles):
-        for name in self._obstacles.keys():
-            full_path = self._root_path + name + '/model.sdf'
-            self._obstacle_files[name] = full_path
-
-    def spawn_service_call(self, model, file, pose, z_offset):
-        orientation = list(tf.transformations.quaternion_from_euler(0, 0, 0))
-        orient_fixed = Quaternion(orientation[0], orientation[1], orientation[2], orientation[3])
-        init_pose = Pose(Point(
-        x=(pose[0]-1),
-        y=pose[1],
-        z=pose[2] + z_offset), orient_fixed) #hacky fix for x value to be correct... TODO
-
-        f = open(file)
-        sdf_f = f.read()
-
-        rospy.wait_for_service('/gazebo/spawn_sdf_model')
-        spawn_model = rospy.ServiceProxy('/gazebo/spawn_sdf_model', SpawnModel)
-        try:
-          resp1 = spawn_model(model, sdf_f, "", init_pose, "world") #expects model name, model file, robot namespace, initial pose, and reference frame
-        except rospy.ServiceException as exc:
-          print("Service did not process request (Failed to spawn model): " + str(exc))
-
-    def permute_obstacles(self, pose_dict):
-        for name in pose_dict.keys():
-            file = self._obstacle_files[name]
-            self.spawn_service_call(name, file, pose_dict[name], self._obstacles[name]['z_offset'])
-
-    def delete_obstacles(self):
-        for name in self._obstacles.keys():
-            rospy.wait_for_service('/gazebo/delete_model')
-            delete_model = rospy.ServiceProxy('/gazebo/delete_model', DeleteModel)
-            try:
-              resp1 = delete_model(name)
-            except rospy.ServiceException as exc:
-              print("Service did not process request (Failed to delete model): " + str(exc))
