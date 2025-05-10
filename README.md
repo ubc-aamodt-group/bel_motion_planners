@@ -19,7 +19,7 @@
 Kinova 6DOF Robot Arm benchmark
 ---
 
-The project is tested in Ubuntu 18.04 and created using ROS Melodic. Install ROS Melodic and Move-It following the instructions [here](https://www.google.com/). Make sure to source the ROS environment.
+The project is tested in Ubuntu 18.04 using ROS Melodic. Install ROS Melodic and Move-It following the instructions [here](https://www.google.com/). Make sure to source the ROS environment in all terminals before running any commands listed below.
 ```
 source /opt/ros/melodic/setup.bash
 ```
