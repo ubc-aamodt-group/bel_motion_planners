@@ -148,7 +148,6 @@ class MLP_bel_sml(nn.Module):
 """
 This is the encoder architecture used in the Kinova experiments.
 """        
-
 class Encoder(nn.Module):
     def __init__(self, input_size, output_size):
         super(Encoder, self).__init__()
