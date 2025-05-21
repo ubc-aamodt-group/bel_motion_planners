@@ -1,8 +1,8 @@
 **This repository is incomplete - it is a work in progress**
 
-# [Neural Encodings for Energy-Efficient Motion Planning <img src="images/ICRA-RGB.png" width=200>](https://www.google.com/)
+# [Neural Encodings for Energy-Efficient Motion Planning <img src="images/ICRA-RGB.png" width=200>](paper.pdf)
 
-[Deval Shah*](https://www.linkedin.com/in/deval-shah-91485867/), [Jocelyn Zhao*](www.linkedin.com/in/jocelyn-zhao), [Tor M. Aamodt](https://www.ece.ubc.ca/~aamodt/)
+[Jocelyn Zhao*](www.linkedin.com/in/jocelyn-zhao), [Deval Shah*](https://www.linkedin.com/in/deval-shah-91485867/), [Tor M. Aamodt](https://www.ece.ubc.ca/~aamodt/)
 
 \* Equal contribution
 
@@ -66,7 +66,7 @@ If you find this project useful in your research, please cite:
   author    = {Shah, Deval and Zhao, Jocelyn and Aamodt, Tor M. },
   booktitle = {International Conference on Robotics and Automation},
   title     = {Neural Encodings for Energy-Efficient Motion Planning},
-  url       = {https://www.google.com/},
+  url       = {https://github.com/ubc-aamodt-group/bel_motion_planners/blob/main/paper.pdf},
   month     = {May},
   year      = {2025},
 }
