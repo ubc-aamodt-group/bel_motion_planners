@@ -32,19 +32,17 @@
       display: inline-block;
       margin: 20px 10px;
       padding: 12px 24px;
-      background-color: #e6fdff;
       color: black;
       text-decoration: none;
       font-weight: bold;
-      border: 2px solid #1b2cc1;
+      border: 2px solid black;
       border-radius: 6px;
       transition: background-color 0.3s ease;
     }
 
     .button:hover {
-      background-color: rgb(145, 228, 253);
-      color: white;
-
+      background-color: #e6fdff;
+      color: black;
     }
 
     .image-preview {
@@ -56,21 +54,34 @@
 </head>
 <body>
   <div class="container">
+    <div style="display: flex; justify-content: center; align-items: center; gap: 40px;"></div>
+    <img src="images/ubc.png" alt="University of British Columbia Logo" class="logo" />
+    <img src="images/ece.png" alt="Electrical and Computer Engineering Department" class="logo" />
+    <img src="images/ICRA-RGB.png" alt="ICRA Logo" class="logo" />
+  </div>
     <h1>Neural Encodings for Energy-Efficient Motion Planning</h1>
-    <div style="display: flex; justify-content: center; align-items: center; gap: 20px;"></div>
-      <img src="images/ubc.png" alt="University of British Columbia Logo" class="logo" />
-      <img src="images/ece.png" alt="Electrical and Computer Engineering Department" class="logo" />
-      <img src="images/ICRA-RGB.png" alt="ICRA Logo" class="logo" />
-    </div>
-    
+    <h2>Jocelyn Zhao*, Deval Shah*, Tor M. Aamodt</h2>
+    <h2>ICRA 2025</h2>
 
     <p>
-      This project explores neural representations to enable low-power, high-accuracy motion planning in robotics.
+      This project explores neural encodings to enable low-power, high-accuracy motion planning in robotics.
     </p>
 
     <a href="paper.pdf" class="button" target="_blank">📄 View Paper (PDF)</a>
     <a href="https://github.com/ubc-aamodt-group/bel_motion_planners" class="button" target="_blank">🔗 GitHub Repo</a>
     <a href="slides.pptx" class="button" target="_blank">Download slides</a>
+
+    <p>If you find this project useful in your research, please cite:</p>
+    <pre><code>
+      @inproceedings{BEL-ICRA2025,
+        author    = {Shah, Deval and Zhao, Jocelyn and Aamodt, Tor M. },
+        booktitle = {International Conference on Robotics and Automation},
+        title     = {Neural Encodings for Energy-Efficient Motion Planning},
+        url       = {https://ubc-aamodt-group.github.io/bel_motion_planners/paper.pdf},
+        month     = {May},
+        year      = {2025},
+      }
+      </code></pre>
   </div>
 </body>
 </html>
