@@ -1,6 +1,6 @@
 **This repository is incomplete - it is a work in progress**
 
-# [Neural Encodings for Energy-Efficient Motion Planning <img src="images/ICRA-RGB.png" width=200>](docs/paper.pdf)
+# [Neural Encodings for Energy-Efficient Motion Planning <img src="docs/images/ICRA-RGB.png" width=200>](docs/paper.pdf)
 
 [Jocelyn Zhao*](www.linkedin.com/in/jocelyn-zhao), [Deval Shah*](https://www.linkedin.com/in/deval-shah-91485867/), [Tor M. Aamodt](https://www.ece.ubc.ca/~aamodt/)
 
